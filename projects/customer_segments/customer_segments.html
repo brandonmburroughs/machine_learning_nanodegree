@@ -11782,7 +11782,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries necessary for this project</span>
@@ -11837,7 +11837,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Display a description of the dataset</span>
@@ -11964,7 +11964,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Select three indices of your choice you wish to sample from the dataset</span>
@@ -12106,7 +12106,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
@@ -12123,7 +12123,7 @@ div#notebook {
     <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">feature_to_predict</span><span class="p">],</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1234</span><span class="p">)</span>
 
     <span class="c1"># TODO: Create a decision tree regressor and fit it to the training set</span>
-    <span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">()</span>
+    <span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1234</span><span class="p">)</span>
     <span class="n">regressor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
     <span class="c1"># TODO: Report the score of the prediction using the testing set</span>
@@ -12141,12 +12141,12 @@ div#notebook {
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Prediction score (R^2) for feature Fresh = -0.657091342652
-Prediction score (R^2) for feature Milk = 0.000151492385566
-Prediction score (R^2) for feature Grocery = 0.653675475504
-Prediction score (R^2) for feature Frozen = -2.65578673531
-Prediction score (R^2) for feature Detergents_Paper = 0.590442298182
-Prediction score (R^2) for feature Delicatessen = -0.554585022462
+<pre>Prediction score (R^2) for feature Fresh = -0.747882028148
+Prediction score (R^2) for feature Milk = -0.107086814264
+Prediction score (R^2) for feature Grocery = 0.58604293713
+Prediction score (R^2) for feature Frozen = -2.99258451138
+Prediction score (R^2) for feature Detergents_Paper = 0.659491189903
+Prediction score (R^2) for feature Delicatessen = -0.730197132495
 </pre>
 </div>
 </div>
@@ -12178,7 +12178,7 @@ Prediction score (R^2) for feature Delicatessen = -0.554585022462
 <p><strong>Answer:</strong></p>
 <ul>
 <li>Originally, I tried to predict <code>Fresh</code>.  However, I noticed it had a negative score (which in <a href="http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html#sklearn.tree.DecisionTreeRegressor.score">this case is R^2</a>).  I thought that R^2 could only have values between 0 and 1, but it turns out that these are the practical bounds.  0 is the score you get if you just produced a constant function.  This means that our model did worse than just predicting a constant!  That's pretty bad!  This made me want to look at all of the features, so, since the model is quick to fit on this small dataset, I wrapped the code in a <code>for</code> loop to make predictions for all of the variables.</li>
-<li>Three of the prediction scores, those for <code>Fresh</code>, <code>Frozen</code>, and <code>Delicatessen</code>, are negative.  As I mentioned before, this means that the model does worst than predicting a constant (a horizontal line).  The prediction score for <code>Milk</code> is positive but very close to zero, meaning that it performs similarly to predicting a constant.  The prediction scores for <code>Grocery</code> and <code>Detergents_Paper</code> are positive and larger than the other scores.</li>
+<li>Three of the prediction scores, those for <code>Fresh</code>, <code>Milk</code>, <code>Frozen</code>, and <code>Delicatessen</code>, are negative.  As I mentioned before, this means that the model does worst than predicting a constant (a horizontal line).  The prediction scores for <code>Grocery</code> and <code>Detergents_Paper</code> are positive and larger than the other scores.</li>
 <li>It seems that the features <code>Fresh</code>, <code>Frozen</code>, <code>Delicatessen</code>, and <code>Milk</code> are needed for identifying customers' spending habits, but the features <code>Grocery</code> and <code>Detergents_Paper</code> may not be necessary for identifying customers' spending habits.</li>
 </ul>
 
@@ -13957,7 +13957,7 @@ S0MDAABDBAYAAGCIwAAAAAwRGAAAgCECAwAAMERgAAAAhv4XALA9iHmrqowAAAAASUVORK5CYII=
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <ul>
-<li>Looking at the histogram plots, it seems that the features of the dataset have similar distributions.  They are not quite normally distributed (it seems closer to Poisson) with many values close to zero and a long tail to the right.  These points in the long tail to the right are likely outliers for each feature.  The large number of points near zero show that most establishments likely only order a small amount of most of the categories, focusing on one or two categories primarily.  Our distributions are quite skewed by the outliers.  </li>
+<li>Looking at the histogram plots, it seems that the features of the dataset have similar distributions.  They are not quite normally distributed (it seems closer to Log-Normal) with many values close to zero and a long tail to the right.  These points in the long tail to the right are likely outliers for each feature.  The large number of points near zero show that most establishments likely only order a small amount of most of the categories, focusing on one or two categories primarily.  Our distributions are quite skewed by the outliers.  </li>
 <li>As seen in the scatter plots and heatmap above, <code>Grocery</code> and <code>Detergents_Paper</code> seem to be heavily correlated with each other as well as slightly correlated with <code>Milk</code>.</li>
 <li>This confirms my suspicions about the relevance of the features I previously attempted to predict.  Both <code>Grocery</code> and <code>Detergents_Paper</code> seemed to be able to be predicted by other features.</li>
 <li>The data for <code>Grocery</code> and <code>Detergents_Paper</code> are both distributed like the rest of the data, not quite normal with a heavy concentration near zero and a long tail to the right.</li>
@@ -18748,7 +18748,7 @@ AECxBCIAAKBYAhEAAFAsgQgAACiWQAQAABTr/wFh+2Dqs72Y8wAAAABJRU5ErkJggg==
 <ul>
 <li>~71% (0.7068) of the variance in the data is explained in total by the first and second principal components.</li>
 <li>~93% (0.9311) of the variance in the data is explained by the first four principal components.</li>
-<li>The first dimension explains ~44% of the variance in the data.  It seems to represent the <code>Detergents_Paper</code> feature the best and represent the <code>Milk</code> and <code>Grocery</code> features relatively well.  These have the highest absolute weights of all the features.  The second dimensions explains explains ~26% of the variance in the data (71% of the variance cumulatively with the first dimension).  It represents the features <code>Fresh</code>, <code>Frozen</code>, and <code>Delicatessen</code> well.  This is interesting because these are the features that the first dimention did not represent as well.  Overall, it would seem that the first dimension falls along a distinct direction that corresponds to <code>Detergents_Paper</code>, <code>Milk</code>, and <code>Grocery</code>, while the second dimension falls along a direction that correspond to <code>Fresh</code>, <code>Frozen</code>, and <code>Delicatessen</code>.  The third dimension explains ~12% of the variances data (~83% of the variance cumulatively with the first two dimensions).  It represnts the features <code>Fresh</code> and <code>Delicatessen</code> well.  The fourth dimension epxlains ~10% of the variancei n the data (~93% of the variance cumulatively with the first three dimensions).  It represents the features <code>Frozen</code> and <code>Delicatessen</code> well.  The fifth dimension epxlains ~5% of the variance in the data (~98% of the variance cumulatively with the first four dimensions).  It represents the features <code>Milk</code> and <code>Detergents_Paper</code> well.  The sixth (and final) dimension epxlains ~2% of the variance in the data (100% of the variance cumulatively with the first five dimensions).  It represents the features <code>Milk</code> and <code>Grocery</code> well.  The first four dimensions best repesent all of the original features in terms of customer spending by each contributing a piece of each feature along their distinct dimensions.  This allows us to explain ~93% of the variance in the data by just using these four PCA dimensions.  It makes sense that the later dimensions explain less of the variance in the data since there are many obvious repeats in the features that they represent well.</li>
+<li>The first dimension explains ~44% of the variance in the data.  It seems to represent the <code>Detergents_Paper</code> feature the best and represent the <code>Milk</code> and <code>Grocery</code> features relatively well as they are all negatively correlated with with the first dimension.  These also have the highest absolute weights of all the features.  The second dimension explains explains ~26% of the variance in the data (71% of the variance cumulatively with the first dimension).  It represents the features <code>Fresh</code>, <code>Frozen</code>, and <code>Delicatessen</code> well as they are all negatively correlated with the second dimension.  This is interesting because these are the features that the first dimention did not represent as well.  Overall, it would seem that the first dimension falls along a distinct direction that corresponds inversely to <code>Detergents_Paper</code>, <code>Milk</code>, and <code>Grocery</code>, while the second dimension falls along a direction that correspond inversely to <code>Fresh</code>, <code>Frozen</code>, and <code>Delicatessen</code>.  The third dimension explains ~12% of the variances data (~83% of the variance cumulatively with the first two dimensions).  It represnts the features <code>Fresh</code> (a negative correlation) and <code>Delicatessen</code> (a positive correlation) well.  The fourth dimension epxlains ~10% of the variancei n the data (~93% of the variance cumulatively with the first three dimensions).  It represents the features <code>Frozen</code> (a positive correlation) and <code>Delicatessen</code> (a negative correlation) well.  The fifth dimension epxlains ~5% of the variance in the data (~98% of the variance cumulatively with the first four dimensions).  It represents the features <code>Milk</code> (a positive correlation) and <code>Detergents_Paper</code> (a neative correlation) well.  The sixth (and final) dimension epxlains ~2% of the variance in the data (100% of the variance cumulatively with the first five dimensions).  It represents the features <code>Milk</code> (a negative correlation) and <code>Grocery</code> (a positive correlation) well.  The first four dimensions best repesent all of the original features in terms of customer spending by each contributing a piece of each feature along their distinct dimensions.  This allows us to explain ~93% of the variance in the data by just using these four PCA dimensions.  It makes sense that the later dimensions explain less of the variance in the data since there are many obvious repeats in the features that they represent well.</li>
 </ul>
 
 </div>
@@ -21991,7 +21991,7 @@ AABJRU5ErkJggg==
 <p><strong>Answer:</strong></p>
 <ul>
 <li>The clustering algorithm and number of clsuters chosen compare pretty well to the underlying distribution of Hotel/Restuarant/Cafe customers to Retailer customers.  The clustering algorithm worked best with two clusters (the same as the number of types of customers provided here) and produced a split similar to the split shown above.</li>
-<li>Yes.  It would seem that there are some points much closer to their cluster center and farther from the other cluster center that seem to represent a "pure" Reailer or Hotel/Restaurant/Cafe.  </li>
+<li>These two customer segments do not seem to be able to be classified purely 'Retailers' or 'Hotels/Restuarants/Cafes' by this distribution because there are still many points that closer to the cluster they do not belong to.  In the center portion, there are many overlapping points that belong to different clusters.</li>
 <li>These classifications are pretty consistent with my previous definition of the customer segments.  I predicted Segment 0 was some sort of grocery store, when it turned out to be the Retailer segment.  I predicted Segment 1 was some sort of fresh open market or a place that served food, which seems to be mostly correct.  My predictions were more specific than the actual category but mostly correct overall.</li>
 </ul>
 
