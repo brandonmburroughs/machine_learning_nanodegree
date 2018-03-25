@@ -1,0 +1,3 @@
+[submodule "projects/dog-project"]
+	path = projects/dog-project
+	url = git@github.com:brandonmburroughs/dog-project.git
